@@ -1,0 +1,130 @@
+
+@import url(//fonts.googleapis.com/css?family=Roboto:500,300,400);
+
+body {
+    margin:0;
+    font-family:'Roboto', sans-serif;
+    font-weight:400;
+    color:#333;
+}
+
+a {
+    color:#3fad37;
+    text-decoration:none;
+}
+
+#header {
+    background:#fad323;
+    overflow:auto;
+    padding:10px 20px;
+    border-bottom:6px solid #f4c021db;
+}
+
+#header .logo {
+    text-decoration:none;
+    font-family:'Roboto', sans-serif;
+    font-weight:300;
+    text-transform:uppercase;
+    font-size:24px;
+    color:rgb(129, 22, 161);
+    float:left;
+}
+
+#header a {
+    color:#fff;
+}
+
+
+select {
+    width:324px;
+}
+
+input[type=submit], a.button {
+    border-radius:5px;
+    background:#e62ea9;
+    color:#fff;
+    font-size:16px;
+    text-transform:uppercase;
+    border:none;
+    padding:10px 20px;
+    margin:20px 0;
+}
+
+a.secondary-button {
+    border:3px solid #4dcc43;
+    padding:10px 20px;
+    margin:10px 0;
+}
+
+input[type=submit]:hover, a.button:hover {
+    background:#f37107;
+}
+
+#chat {
+    top: 64px;
+    bottom:0;
+    position:fixed;
+    width:100%;
+    overflow-y:scroll;
+    padding-bottom:150px;
+}
+
+#chat .s_message {
+    background:#efefef;
+    padding:10px 20px;
+    border-radius:4px;
+    width:auto;
+    display:inline;
+    float:right;
+    margin:10px 10px 0;
+    min-width:440px;
+    clear:both;
+}
+
+#chat .r_message {
+    background:#efefef;
+    padding:10px 20px;
+    border-radius:4px;
+    width:auto;
+    display:inline;
+    float:left;
+    margin:10px 10px 0;
+    min-width:440px;
+    clear:both;
+}
+#chat .date {
+    color:#aaa;
+    font-style:italic;
+    font-size:12px;
+}
+
+#chat .sender {
+    text-align: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: coral;
+    float:right;
+}
+#chat .sender p {
+    padding:15px;
+}
+
+#chat-input {
+    position:absolute;
+    bottom:0;
+    background:#efefef;
+    width:100%;
+    padding-top:20px;
+}
+
+#chat-input input {
+    width:96%;
+    position:left;
+    float:left;
+    display:inline;
+    margin-left:2%;
+    margin-right:2%;
+    padding-left:0;
+    padding-right:0;
+}

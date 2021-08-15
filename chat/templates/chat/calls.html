@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Joke Calls{% endblock %}
+
+{% block content %}
+  <table>
+      <th>Joke Calls</th>
+      {% for joke in calls %}
+      <tr>
+          <td>{{ joke.name }}</td>
+          <td>{{ joke.calls }}</td>
+      </tr>
+      {%  endfor %}
+  </table>
+{% endblock %}

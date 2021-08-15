@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}You Tolkien to Me{% endblock %}
+{% block content %}
+  <div id="chat">
+  </div>
+  <div>
+    <div id="chat-input" class="row">
+      <div class="col-md-4"><input id="chat-message-submit-fat"  type="submit" value="Fat"></div>
+      <div class="col-md-4"><input id="chat-message-submit-dumb" class="col-md-4" type="submit" value="Dumb"></div>
+      <div class="col-md-4"><input id="chat-message-submit-stupid" class="col-md-4" type="submit" value="Stupid"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="modal show" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" onclick="$('.modal').removeClass('show').addClass('fade');">&times;</button>
+            <h4 class="modal-title">Enter Your Details</h4>
+          </div>
+          <div class="modal-body">
+            <div id="user-input">
+              <input id="user-name-input" type="text">
+              <input id="user-number-input" type="number">
+              <input id="user-submit" type="submit" value="Talk" onclick="$('.modal').removeClass('show').addClass('fade');">
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div> 
+  </div>
+{% endblock %}
+{% block domready %}
+  var $usr_name=$('#user-name-input');
+  var $usr_number=$('#user-number-input');
+  var $usr_submit=$('#user-submit');
+  var url = 'ws://' + window.location.host +'/ws/chat/room/';
+  var chatSocket = new WebSocket(url);
+  chatSocket.onmessage = function(e) {
+    var data = JSON.parse(e.data);
+    var in_message = data.sent_text;
+    var message = data.message;
+    var dateOptions = {hour: 'numeric', minute: 'numeric', hour12: true};
+    var datetime = new Date(data['datetime']).toLocaleString('en', dateOptions);
+    var $chat = $('#chat');
+    $chat.append('<div class="s_message">' + 
+      '<span class="date">' + datetime + '</span><br>' +
+      in_message + '<div class="sender">' + '<p>' + "Me" + '</p>' + '</div>' + '</div>');
+    $chat.append('<div class="r_message">' + 
+      '<span class="date">' + datetime + '</span><br>' +
+      message.text  + '<div class="sender">' + '<p>' + "WB" + '</p>' + '</div>' + '</div>');
+    $chat.scrollTop($chat[0].scrollHeight);
+  };
+  chatSocket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+  };
+  var $fat_submit = $('#chat-message-submit-fat');
+  var $dumb_submit = $('#chat-message-submit-dumb');
+  var $stupid_submit = $('#chat-message-submit-stupid');
+  var name=$usr_name.val();
+  $fat_submit.click(function(name) {
+    console.error(name);
+  });
+  $fat_submit.click(function() {
+    chatSocket.send(JSON.stringify({'message':'fat'}));
+  });
+  $dumb_submit.click(function() {
+    chatSocket.send(JSON.stringify({'message':'dumb'}));
+  });
+  $stupid_submit.click(function() {
+    chatSocket.send(JSON.stringify({'message':'stupid'}));
+  });
+{% endblock %}
