@@ -25,7 +25,7 @@ def add_user(name,type):
         elif type=='d_type':
             user.d_joke+=1
             user.save()
-        else:
+        elif type=='s_type':
             user.s_joke+=1
             user.save()
     except User.DoesNotExist:
@@ -57,7 +57,7 @@ def respond_to_websockets(message,user):
         add_user(user,'d_type')
         result_message['text'] = random.choice(jokes['dumb'])
     else:
+        add_user(user,'null')
         result_message['text']='Hii {},I am a WickedBot. Sometimes people hate me but if you want to listen to a some Dumb,Stupid,Fat jokes then press below buttons '.format(user)
 
     return result_message
-    
