@@ -3,11 +3,19 @@
 
 {% block content %}
   <table>
-      <th>Joke Calls</th>
-      {% for joke in calls %}
+      <th>Joke Calls By Users</th>
+      {% for user in users %}
       <tr>
-          <td>{{ joke.name }}</td>
-          <td>{{ joke.calls }}</td>
+          <td>User  {{ user.name }}</td>
+      </tr>
+      <tr>
+        <td>Fat Joke {{ user.f_joke }}</td>
+      </tr>
+      <tr>
+        <td>Stupid Joke  {{ user.s_joke }}</td>
+      </tr>
+      <tr>
+          <td>Dumb Joke  {{ user.d_joke }}</td>
       </tr>
       {%  endfor %}
   </table>

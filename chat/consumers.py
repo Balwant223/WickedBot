@@ -5,6 +5,7 @@ from asgiref.sync import async_to_sync
 from django.utils import timezone
 
 class ChatConsumer(WebsocketConsumer):
+    talker='null'
     def connect(self):
         self.id = self.scope['url_route']['kwargs']['room_id']
         self.room_group_name = 'chat_%s' % self.id
@@ -23,12 +24,13 @@ class ChatConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         if 'user' in text_data_json:
-            message=text_data_json['user']
-            print(message)
-            response=respond_to_websockets(message)
+            u_name=text_data_json['user']
+            message='name'
+            self.talker=u_name
+            response=respond_to_websockets(message,self.talker)
         else:
             message = text_data_json['message']
-            response = respond_to_websockets(message)
+            response = respond_to_websockets(message,self.talker)
         now = timezone.now()
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
