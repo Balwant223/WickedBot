@@ -57,10 +57,6 @@
   var $fat_submit = $('#chat-message-submit-fat');
   var $dumb_submit = $('#chat-message-submit-dumb');
   var $stupid_submit = $('#chat-message-submit-stupid');
-  var name=$usr_name.val();
-  $fat_submit.click(function(name) {
-    console.error(name);
-  });
   $fat_submit.click(function() {
     chatSocket.send(JSON.stringify({'message':'fat'}));
   });
