@@ -2,11 +2,22 @@
 {% block title %}Joke Calls{% endblock %}
 
 {% block content %}
+<table>
+  <th>Total Joke Calls</th>
+  <tr>
+    <td>Fat Joke {{ jokes.fat }}</td>
+  </tr>
+  <tr>
+    <td>Stupid Joke  {{ jokes.stupid }}</td>
+  </tr>
+  <tr>
+      <td>Dumb Joke  {{ jokes.dumb }}</td>
+  </tr>
   <table>
       <th>Joke Calls By Users</th>
       {% for user in users %}
       <tr>
-          <td>User  {{ user.name }}</td>
+          <td><strong>  {{ user.name }}</strong></td>
       </tr>
       <tr>
         <td>Fat Joke {{ user.f_joke }}</td>

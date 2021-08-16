@@ -9,7 +9,12 @@ def chat_room(request):
 
 def joke_calls(request):
     users=User.objects.all()
-    return render(request,'chat/calls.html',{'users':users})
+    jokes={'fat':0,'dumb':0,'stupid':0}
+    for u in users:
+        jokes['fat']=jokes['fat']+u.f_joke
+        jokes['stupid']=jokes['stupid']+u.s_joke
+        jokes['dumb']=jokes['dumb']+u.d_joke
+    return render(request,'chat/calls.html',{'users':users,'jokes':jokes})
 
 def add_user(name,type):
     try:
