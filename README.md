@@ -2,7 +2,8 @@
 
 - Clone project and move to project root directory. 
 - Activate python environment .
-- Update your pip to latest version . 
+- Update your pip to latest version otherwise installing requirements will give you error.
+- Upgrade pip by running ```pip install --upgrade pip``` . 
 - Then run ```pip install -r requirments.txt``` .
 - Install and setup postgresql and create Role and Database .
 - Then add Database configuration at settings.py of WickedBot directory .
