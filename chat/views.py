@@ -4,7 +4,8 @@ from .models import JokeCalls
 import random
 
 def chat_room(request):
-    return render(request,'chat/room.html')
+    room_id=random.randint(1000,10000)
+    return render(request,'chat/room.html',{'room_id':room_id})
 
 def joke_calls(request):
     calls=JokeCalls.objects.all()
@@ -42,5 +43,7 @@ def respond_to_websockets(message):
     elif 'dumb' in message:
         add_call('stupid')
         result_message['text'] = random.choice(jokes['dumb'])
+    else:
+        result_message['text']='Hii {},I am a WickedBot. Sometimes people hate me but if you want to listen to a some Dumb,Stupid,Fat jokes then press below buttons '.format(message)
     return result_message
     
